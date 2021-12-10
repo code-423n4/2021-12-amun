@@ -1,0 +1,20 @@
+node_modules
+
+#Hardhat files
+cache
+artifacts
+typechain
+
+types
+typechainweb3
+package
+
+.env
+
+Notes.md
+
+
+dist
+.openzeppelin
+
+yarn-error.log
