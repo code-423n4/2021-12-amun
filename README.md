@@ -1,80 +1,3 @@
-# ✨ So you want to sponsor a contest
-
-This `README.md` contains a set of checklists for our contest collaboration.
-
-Your contest will use two repos: 
-- **a _contest_ repo** (this one), which is used for scoping your contest and for providing information to contestants (wardens)
-- **a _findings_ repo**, where issues are submitted. 
-
-Ultimately, when we launch the contest, this contest repo will be made public and will contain the smart contracts to be reviewed and all the information needed for contest participants. The findings repo will be made public after the contest is over and your team has mitigated the identified issues.
-
-Some of the checklists in this doc are for **C4 (🐺)** and some of them are for **you as the contest sponsor (⭐️)**.
-
----
-
-# Contest setup
-
-## 🐺 C4: Set up repos
-- [X] Create a new private repo named `YYYY-MM-sponsorname` using this repo as a template.
-- [ ] Get GitHub handles from sponsor.
-- [ ] Add sponsor to this private repo with 'maintain' level access.
-- [X] Send the sponsor contact the url for this repo to follow the instructions below and add contracts here. 
-- [ ] Delete this checklist and wait for sponsor to complete their checklist.
-
-## ⭐️ Sponsor: Provide contest details
-
-Under "SPONSORS ADD INFO HERE" heading below, include the following:
-
-- [ ] Name of each contract and:
-  - [ ] lines of code in each
-  - [ ] external contracts called in each
-  - [ ] libraries used in each
-- [ ] Describe any novel or unique curve logic or mathematical models implemented in the contracts
-- [ ] Does the token conform to the ERC-20 standard? In what specific ways does it differ?
-- [ ] Describe anything else that adds any special logic that makes your approach unique
-- [ ] Identify any areas of specific concern in reviewing the code
-- [ ] Add all of the code to this repo that you want reviewed
-- [ ] Create a PR to this repo with the above changes.
-
----
-
-# ⭐️ Sponsor: Provide marketing details
-
-- [ ] Your logo (URL or add file to this repo - SVG or other vector format preferred)
-- [ ] Your primary Twitter handle
-- [ ] Any other Twitter handles we can/should tag in (e.g. organizers' personal accounts, etc.)
-- [ ] Your Discord URI
-- [ ] Your website
-- [ ] Optional: Do you have any quirks, recurring themes, iconic tweets, community "secret handshake" stuff we could work in? How do your people recognize each other, for example? 
-- [ ] Optional: your logo in Discord emoji format
-
----
-
-# Contest prep
-
-## 🐺 C4: Contest prep
-- [X] Rename this repo to reflect contest date (if applicable)
-- [X] Rename contest H1 below
-- [X] Add link to report form in contest details below
-- [X] Update pot sizes
-- [ ] Fill in start and end times in contest bullets below.
-- [X] Move any relevant information in "contest scope information" above to the bottom of this readme.
-- [ ] Add matching info to the [code423n4.com public contest data here](https://github.com/code-423n4/code423n4.com/blob/main/_data/contests/contests.csv))
-- [ ] Delete this checklist.
-
-## ⭐️ Sponsor: Contest prep
-- [ ] Make sure your code is thoroughly commented using the [NatSpec format](https://docs.soliditylang.org/en/v0.5.10/natspec-format.html#natspec-format).
-- [ ] Modify the bottom of this `README.md` file to describe how your code is supposed to work with links to any relevent documentation and any other criteria/details that the C4 Wardens should keep in mind when reviewing. ([Here's a well-constructed example.](https://github.com/code-423n4/2021-06-gro/blob/main/README.md))
-- [ ] Please have final versions of contracts and documentation added/updated in this repo **no less than 8 hours prior to contest start time.**
-- [ ] Ensure that you have access to the _findings_ repo where issues will be submitted.
-- [ ] Promote the contest on Twitter (optional: tag in relevant protocols, etc.)
-- [ ] Share it with your own communities (blog, Discord, Telegram, email newsletters, etc.)
-- [ ] Optional: pre-record a high-level overview of your protocol (not just specific smart contract functions). This saves wardens a lot of time wading through documentation.
-- [ ] Designate someone (or a team of people) to monitor DMs & questions in the C4 Discord (**#questions** channel) daily (Note: please *don't* discuss issues submitted by wardens in an open channel, as this could give hints to other wardens.)
-- [ ] Delete this checklist and all text above the line below when you're ready.
-
----
-
 # Amun contest details
 - $71,250 main award pot
 - $3,750 gas optimization award pot
@@ -84,6 +7,163 @@ Under "SPONSORS ADD INFO HERE" heading below, include the following:
 - Starts December 13, 2021 00:00 UTC
 - Ends December 19, 2021 23:59 UTC
 
-This repo will be made public before the start of the contest. (C4 delete this line when made public)
 
-[ ⭐️ SPONSORS ADD INFO HERE ]
+| Glossary| |
+|-------------------------------|------------------------------------------------------|
+|  Basket| A token that wrapps multiple underlying token into one Token |
+| Rebalancing| Trading the underlying of a basket to change weights and add/remove underlying token |
+| Root Chain | Ethereum / Goerlie |
+| Child chain | Matic / Mumbai |
+
+# Contest Scope
+The focus for the contest is to try and find any logic errors or ways to drain funds from the protocol in a way that is advantageous for an attacker at the expense of users with funds invested in the protocol. Wardens should assume that governance variables are set sensibly (unless they can find a way to change the value of a governance variable, and not counting social engineering approaches for this). 
+
+## Protocol overview
+The amun basket protocol is an index token and the supporting contracts needed for interacting with it. 
+The core contract is the `Basket` build from facets with the diamond standard. The Basket has facets adding ERC20, basket, and callManager functionality. Basket facet enables join/exiting the basket and removing/adding underlying. 
+The `CallManager` facet enables manager to acct as the Basket. This allows `RebalanceManager` to rebalance the underlying. This contract can only be used by the owner and trades underlying via exchanges like uniswap.
+The `SingleJoin` and `SingleExit` are helper contracts that enable buying/selling the underlying token from a single token like WETH.
+The `Bridge` token are a pair of token enabling bridging the basket between ethereum and matic. This is done by deploying on ethereum and matic according to the Polygon PoS token standard. 
+
+## Smart Contracts
+All the contracts in this section are to be reviewed. Any contracts not in this list are to be ignored for this contest.
+A further breakdown of [contracts and their dependencies can be found here](https://docs.google.com/spreadsheets/d/1iwl_WO95_x0lhU7ML5ejRdZ3PiLOWrygBvZJQRTurKc/edit?usp=sharing) TODO
+
+	
+### Basket
+The core contract is build in separate facets (modules) with the diamond standard:
+
+#### BasketFacet (342 sloc)
+This module enables handling underlying token. It holds core functionality for interacting with the token.  
+
+ - Managing underlying token 
+	- `addToken`/`removeToken`
+	- `joinPool`/`exitingPool` with underlying
+	- handling fees 
+	- `calcTokensForAmount` underlying ratio needed to mint quantity of token 
+	- `calcTokensForAmountExit` underlying returned when burning the basket (exit)
+
+
+#### CallFacet (116 sloc)
+ Enables other contracts to act as the Basket token and makes it possible to add new logic. The contracts in `callManager` use this module.
+
+  - Adding and removing call manager `addCaller` and `removeCaller`
+  - `call`, `callNoValue`, `singleCall` enable creating internal contract as the basket
+
+#### ERC20Facet (218 sloc)
+Adds ERC20 functionalities
+
+### Call managers
+Contracts that can be added to a Basket via the CallFacet, this acting as the basket
+
+#### Rebalance managers
+Enables rebalancing the underlying basket token by swapping underlying for new token via exchanges like uniswap. 
+Different versions 
+ - `RebalanceManager.sol` can swap on one uniswapV2 like exchange 
+ - `RebalanceManagerV2.sol` can swap via multiple uniswapV2 and uniswapV3 like exchanges
+ - `RebalanceManagerV3.sol` can swap over more then one exchange in each trade 
+
+### SingleJoin
+Enables swapping to all underlying token required for a basket in single transaction and join the basket
+
+ - `EthSingleTokenJoin.sol` swapping from ETH to all underlying of a basket and joining basket
+ - `SingleTokenJoin.sol` swapping from Token to all underlying of a basket and joining basket
+
+ - `EthSingleTokenJoinV2.sol` swapping from ETH to all underlying via multiple exchanges of a basket and joining basket
+ - `SingleTokenJoinV2.sol` swapping from Token to all underlying via multiple exchanges of a basket and joining basket
+
+### SingleExit
+Enables exiting a basket and swapping to all underlying token in a single transaction to a output token
+
+ - `SingleNativeTokenExit.sol` exiting and swapping underlying token of a basket to single output token
+ - `SingleNativeTokenExitV2.sol` exiting and swapping underlying token of a basket via multiple exchanges to single output token
+
+### Bridge
+Representation of a token on two different chains child/root using the matic PoS bridge ([HERE](https://docs.polygon.technology/docs/develop/ethereum-polygon/pos/getting-started/)). 
+
+- `PolygonERC20Wrapper.sol` contract deployed on child side and wrapping a basket. This signals the matic bridge when to transfer from child to root chain via `withdraw` and `withdrawTo` and enables the user to call exiting function on the matic bridge and then minting `MintableERC20.sol` on the root chain.
+- `MintableERC20.sol` contract deployed on root side and representing a basket on that chain. Locking the token on the bridge will signal matic to transfer underlying basket of `PolygonERC20Wrapper.sol` via `deposit` to the user on the child chain.
+
+#### User interaction
+User interaction start in either the deposit or withdraw handler. A user is treated differently depending on the size of the user and the type of interaction the user is doing, user interactions can be broken down in the following groups:
+
+
+## Setup
+
+Go to `contracts/basket` and `contracts/bridge`.
+
+Create `.env` file to use the commands (see `.env.example` for more info):
+
+- `PRIVATE_KEY` - Credentials for the account that should be used
+- `INFURA_PROJECT_ID`- For network that use Infura based RPC
+
+Then run:
+
+ ```bash
+ yarn 
+ yarn compile 
+```
+
+## Deploy
+### Deploying Basket Token and helper contracts
+Go to `contracts/basket`.
+
+Deploying the factory
+```bash
+npx hardhat --network [NETWORK] deploy-pie-factory`
+```
+
+Deploying an Basket 
+Define what underlying tokens your basket should have and get the underlying token (uniswap/mint). 
+Then define the correct ratios in `./allocations/{TOKEN_NAME}.json` to generate the Basket  
+```bash
+npx hardhat --network [NETWORK] deploy-pie-from-factory --factory [FACTORY_ADDRESS] --allocation ./allocations/{TOKEN_NAME}.json`
+```
+
+Deploying an RebalanceManager (caller/manager)
+```bash
+npx hardhat --network [NETWORK] deploy-rebalance-manager --basket [BASKET_ADDRESS] --uniswapv2 [UNISWAP_V2_ADDRESS]
+```
+
+Then add the RebalanceManager as a caller
+
+```bash
+npx hardhat --network [NETWORK] add-caller-to-basket --basket [BASKET_ADDRESS] --caller [CALLER_ADDRESS]
+```
+
+Deploy the single swap v1
+```bash
+npx hardhat --network [NETWORK] deploy-single-join-exit --exchange [EXCHANGE] --token [TOKEN_ADDRESS] --weth [NATIVE_TOKEN]
+```
+
+Deploy the single swap v2
+```bash
+npx hardhat --network [NETWORK] deploy-single-join-exit-v2 --exchange [EXCHANGE] --token [TOKEN_ADDRESS] --weth [NATIVE_TOKEN]
+```
+
+### Deploying Matic PoS Bridge Token
+
+Go to `contracts/bridge`.
+
+Deploy the child side token. This should wrap a basket token and be deployed on Matic/Mumbai. 
+```bash
+yarn tasks deploy-child-wpeco --basket [BASKET_ADDRESS] --network [NETWORK]
+```
+
+Deploy the root (ethereum/goerli) side token. 
+
+```bash
+yarn tasks deploy-root-wpeco --network [NETWORK]
+```
+
+Add mapping on [Mapper Matic](https://mapper.matic.today/map)
+
+## Tests
+A full set of unit tests are provided in folder `basket` and `bridge`. To run these do the following:
+
+```bash
+yarn test
+```
+
+## Testnet deployment
+TODO deploy a test setup on GOERLI and MUMBAI 
