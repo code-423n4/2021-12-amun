@@ -10,7 +10,7 @@
 
 | Glossary| |
 |-------------------------------|------------------------------------------------------|
-|  Basket| A token that wrapps multiple underlying token into one Token |
+|  Basket| A token that wraps multiple underlying tokens into one index Token |
 | Rebalancing| Trading the underlying of a basket to change weights and add/remove underlying token |
 | Root Chain | Ethereum / Goerlie |
 | Child chain | Matic / Mumbai |
@@ -31,7 +31,7 @@ A further breakdown of [contracts and their dependencies can be found here](http
 
 	
 ### Basket
-The core contract is build in separate facets (modules) with the diamond standard:
+The core contract is built in separate facets (modules) with the diamond standard:
 
 #### BasketFacet (342 sloc)
 This module enables handling underlying token. It holds core functionality for interacting with the token.  
