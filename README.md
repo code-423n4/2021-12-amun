@@ -27,7 +27,7 @@ The `Bridge` token are a pair of token enabling bridging the basket between ethe
 
 ## Smart Contracts
 All the contracts in this section are to be reviewed. Any contracts not in this list are to be ignored for this contest.
-A further breakdown of [contracts and their dependencies can be found here](https://docs.google.com/spreadsheets/d/1iwl_WO95_x0lhU7ML5ejRdZ3PiLOWrygBvZJQRTurKc/edit?usp=sharing) TODO
+A further breakdown of [contracts and their dependencies can be found here](https://docs.google.com/spreadsheets/d/1iwl_WO95_x0lhU7ML5ejRdZ3PiLOWrygBvZJQRTurKc/edit?usp=sharing)
 
 	
 ### Basket
@@ -164,6 +164,3 @@ A full set of unit tests are provided in folder `basket` and `bridge`. To run th
 ```bash
 yarn test
 ```
-
-## Testnet deployment
-TODO deploy a test setup on GOERLI and MUMBAI 
