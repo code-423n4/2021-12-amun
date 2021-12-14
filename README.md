@@ -27,7 +27,7 @@ The `Bridge` token are a pair of token enabling bridging the basket between ethe
 
 ## Smart Contracts
 All the contracts in this section are to be reviewed. Any contracts not in this list are to be ignored for this contest.
-A further breakdown of [contracts and their dependencies can be found here](https://docs.google.com/spreadsheets/d/1iwl_WO95_x0lhU7ML5ejRdZ3PiLOWrygBvZJQRTurKc/edit?usp=sharing)
+A further breakdown of [contracts and their dependencies can be found here](https://docs.google.com/spreadsheets/d/1JyHQbAwQq1G_PMl-V5YS5wJ6TzDUjiiCpNN1u7anqw0/edit?usp=sharing)
 
 	
 ### Basket
