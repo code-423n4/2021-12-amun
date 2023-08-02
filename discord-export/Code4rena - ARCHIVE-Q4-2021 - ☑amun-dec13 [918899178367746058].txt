@@ -1,0 +1,260 @@
+==============================================================
+Guild: Code4rena
+Channel: ARCHIVE-Q4-2021 / ☑amun-dec13
+==============================================================
+
+[12/10/2021 5:06 PM] itsmetechjay
+👋 Hello and welcome to the contest channel for the $75K USDC **Amun** contest!
+
+📆 Contest opens December 13, 2021, at 0:00 UTC and runs through December 19, 2021 at 23:59 UTC (7 days).
+
+Please give a warm welcome to the Amun team - in particular  @lokisama, @MiniRoman and @jfo - who will be available for questions either here in channel or via DM. 
+
+We'll be posting relevant links, documentation, etc. here, so if you intend to participate in this contest, consider enabling notifications for this channel. 🐺 ⏰
+
+{Reactions}
+👋 (2) 
+
+[12/13/2021 12:05 AM] 0x69e8#2519
+no repo yet?
+
+
+[12/13/2021 12:32 AM] GeekyLumberjack#3244
+Repo on site says 404 not found @Jay | C4
+
+
+[12/13/2021 12:44 AM] nine_k
+sorry gang that’s my fault
+
+
+[12/13/2021 12:45 AM] nine_k
+@🐺wardens repo is public, my apologies
+
+
+[12/13/2021 3:02 AM] jfo150
+best of luck @🐺wardens - give us a shout if you need anything or have questions!
+
+
+[12/13/2021 4:56 AM] wildmolasses
+hey, "Wardens should assume that governance variables are set sensibly" means governance should be trusted yeah?
+
+{Reactions}
+👍 
+
+[12/14/2021 6:36 AM] p12473
+Hey all, I think the link for the further breakdown is not pointing at the correct place... 🤔  https://github.com/code-423n4/2021-12-amun#smart-contracts
+
+{Embed}
+https://github.com/code-423n4/2021-12-amun
+GitHub - code-423n4/2021-12-amun
+Contribute to code-423n4/2021-12-amun development by creating an account on GitHub.
+Code4rena - ARCHIVE-Q4-2021 - ☑amun-dec13 [918899178367746058].txt_Files/43c0a611-72e0-4a51-b2f2-b7b67c860cb2-5FBEE
+
+
+[12/14/2021 9:09 AM] hemulin
+@lokisama ☝
+
+
+[12/14/2021 1:12 PM] hemulin
+@🦖 eric (ninek) | C4 , That link indeed leads to another contest (GRO) material.
+Thanks for identifying @P12473 👍
+
+{Reactions}
+🍻 (2) 
+
+[12/14/2021 1:18 PM] lokisama#0532
+Thanks you are right. I updated it.
+
+{Reactions}
+👍 (4) 
+
+[12/16/2021 11:35 PM] x.hat
+Hey team, I've been running into some issues with deploying a pie from the factory itself
+
+
+[12/16/2021 11:35 PM] x.hat
+would any of you be available to touch base?
+
+
+[12/16/2021 11:36 PM] hemulin
+Sure thing. What timezone you're on?
+
+
+[12/16/2021 11:37 PM] x.hat
+EST
+
+
+[12/16/2021 11:39 PM] hemulin
+Your am works?
+
+
+[12/16/2021 11:40 PM] x.hat
+When were you thinking
+
+
+[12/16/2021 11:45 PM] hemulin
+Likely between your 8 to 10. The team is centered at CET and at that time there's a good overlap. One of the engineers will ping you if it works for you.
+
+
+[12/16/2021 11:46 PM] x.hat
+Sounds good
+
+{Reactions}
+🍻 
+
+[12/17/2021 12:14 AM] mudiko
+Can you give more details about who is supposed to have which role?
+
+
+[12/17/2021 1:05 AM] hemulin
+On this contest we have
+@lokisama dev front seat
+@MiniRoman dev back seat
+
+@jfo PM
+
+
+[12/17/2021 4:41 AM] x.hat
+Should be good now
+
+
+[12/17/2021 4:41 AM] x.hat
+I'll lyk if something else comes up
+
+{Reactions}
+👍 
+
+[12/17/2021 2:03 PM] danb#6193
+Hello there,  is there someone from the dev team who is available to answer me a question?
+
+
+[12/17/2021 2:13 PM] MiniRoman#6556
+Hey @danb ! What would You like to know?
+
+
+[12/17/2021 2:23 PM] danb#6193
+I sent you in direct message
+
+
+[12/19/2021 1:09 AM] kamensec
+hey is anyone from the dev team available atm?
+
+
+[12/19/2021 2:59 AM] x.hat
+https://discord.com/channels/810916927919620096/918899178367746058/921186421887356938
+
+
+[12/19/2021 3:00 AM] x.hat
+4 AM there
+
+
+[12/19/2021 3:00 AM] x.hat
+Probably not
+
+
+[12/19/2021 3:35 AM] kamensec
+4am is a great a time as ever to start!! haha nah apologies I must have missed that one 🤓
+
+
+[12/20/2021 12:02 AM] C4
+**🚨 CONTEST ALERT**
+
+@🐺wardens The **Amun** contest is now closed! Huge thanks to everyone who participated🔍, whether you submitted a finding or not.
+
+What's next: Amun's team will review the findings over the next couple of days, and then we'll pass them off to the judge. Keep an eye on #📢announcements for regular updates on how the contest is progressing through awarding 🤑🏆, judging 🧑‍⚖️ and reporting 📜. Feel free to ping an organizer if you have questions along the way!
+
+
+[03/31/2022 5:41 AM] czar102
+Is there any approximate time the report will come out?
+
+
+[03/31/2022 5:49 AM] 0xmorph
+https://docs.code4rena.com/structure/our-process
+
+{Embed}
+https://docs.code4rena.com/structure/our-process
+Contest timeline
+This is a high level overview of the C4 contest timeline. We have an increasingly detailed operational manual in Notion.
+
+
+[03/31/2022 5:51 AM] czar102
+Yes, I know, it is just extraordinary for a contest to take so long to handle the report. Awards were published more than 2 months ago.
+
+
+[03/31/2022 4:18 PM] itsmetechjay
+We apologize for the delay.  We are working with the sponsor to get the report finalized and published as soon as we can.
+
+{Reactions}
+hi5 
+
+[03/31/2022 4:22 PM] czar102
+Thank you!
+
+{Reactions}
+hi5 
+
+[05/12/2022 4:09 PM] czar102
+Hey, any update on the report?
+
+
+[05/12/2022 8:59 PM] cloudellie
+Sponsor is just triple-checking their work on mitigations 🙂
+
+{Reactions}
+hi5 (2) 
+
+[01/11/2023 1:39 PM] czar102
+Hi, the contest is taking more than a year to close... Any chance it will be finalized within a few weeks from now?
+
+{Reactions}
+🔆 😂 (2) 
+
+[01/11/2023 2:32 PM] teacupsipper
+lol
+
+
+[03/09/2023 6:26 AM] kenzoagada
+My god... 😲 😲 😲 
+Did you imagine we'll see the day?
+https://code4rena.com/reports/2021-12-amun
+
+{Reactions}
+🎉 (2) 
+
+[03/09/2023 6:26 AM] kenzoagada
+Feels like some celebration is in order
+
+
+[03/09/2023 6:29 AM] kenzoagada
+@Czar102 🕺
+
+
+[03/09/2023 9:23 AM] czar102
+Incredible! It’s done!
+
+
+[03/09/2023 9:25 AM] czar102
+I wanted to apply to be a judge with this high severity finding, but couldn’t link it. And after months and months the rules changed and I no longer can apply for the judge role since I’m not kyc’d and I won’t get it. What a pity.
+
+{Reactions}
+empathy (2) 
+
+[03/09/2023 9:49 AM] kenzoagada
+🙂 Haha, damn. It's almost like Murphy's law in effect just for you.
+
+
+[03/09/2023 10:38 AM] czar102
+Yeah I chose a bad contest to find vulns in xdd
+
+{Reactions}
+🙂 (2) 
+
+[03/09/2023 11:34 AM] cloudellie
+@Czar102 I sent you a friend request. Let's talk. 🙂
+
+{Reactions}
+❤️ 
+
+==============================================================
+Exported 49 message(s)
+==============================================================
